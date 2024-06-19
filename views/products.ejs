@@ -1,0 +1,79 @@
+<%- include("partials/head.ejs") %> 
+<%- include("partials/header.ejs") %>
+<h1>Products List</h1>
+
+<!-- sorting -->
+
+<form method="GET" action="/products">
+  <label for="sortField"> Sort by :</label>
+  <select name="sortField" id="sortField">
+    <option value="createdAt" <%= sortField === 'createdAt' ? 'selected' : "" %>>Date</option>
+    <option value="name" <%= sortField === 'name' ? 'selected' : "" %>>Name</option>
+    <option value="type" <%= sortField === 'type' ? 'selected' : "" %>>Type</option>
+    <option value="size" <%= sortField === 'size' ? 'selected' : "" %>>Size</option>
+    <option value="price" <%= sortField === 'price' ? 'selected' : "" %>>Price</option>
+  </select>
+  <label for="sortOrder"> Order :</label>
+  <select name="sortOrder" id="sortOrder">
+    <option value="asc" <%= sortOrder === 'asc' ? 'selected' : "" %>>Ascending</option>
+    <option value="desc" <%= sortOrder === 'desc' ? 'selected' : "" %>>Descending</option>
+   
+  </select>
+  <button type="submit">Sort</button>
+</form>
+
+<!-- pagination -->
+<div>
+  <% if (currentPage > 1) { %>
+        <a href="/products?page=<%= currentPage - 1 %>&sortField=<%= sortField %>&sortOrder=<%= sortOrder %>">Previous</a>
+  <% }%>
+
+  <% for (let pageCount=1 ; pageCount<=totalPages ; pageCount++){ %>
+        <a href="/products?page=<%= pageCount %>&sortField=<%= sortField %>&sortOrder=<%= sortOrder %>"><%=pageCount %></a>
+  <% }%>
+
+  <% if(currentPage < totalPages) { %>
+        <a href="/products?page=<%= currentPage +1 %>&sortField=<%= sortField %>&sortOrder=<%= sortOrder %>">Next</a>
+  <% }%>
+
+</div>
+
+  <table id="product-table">
+    <tr id="product-table-header">
+      <th>Name</th>         
+      <th>Description</th>
+      <th>Type</th>
+      <th>Price</th>
+      <th>Size</th>
+      <th>Published</th>
+      <th colspan="2"></th>
+    </tr>
+  <% if (products && products.length) { %>
+    <% products.forEach((product) => { %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.description %></td>
+        <td><%= product.type %></td>
+        <td>$<%= product.price %></td>
+        <td><%= product.size %></td>
+        <td><%= product.published?"Published":"" %></td>
+        <td><a href="/products/edit/<%= product._id %>">
+          <button type="button">Edit</button>
+        </a></td>
+        <td>
+          <form method="POST" action="/products/delete/<%= product._id %>" style="display: inline">
+          <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+          <button type="submit">Delete</button>
+          </form>
+      </td>
+      </tr>
+    <% }) %>
+  <% } %>
+</table>
+<br>
+<a href="/products/new">
+  <button type="button">Add a new product</button>
+</a>
+
+
+<%- include("partials/footer.ejs") %>
