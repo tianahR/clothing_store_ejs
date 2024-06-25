@@ -9,10 +9,10 @@ const {
   logoff,
 } = require("../controllers/sessionController");
 
-/**when someone sends a POST request to the /sessions/logon path, 
+/**when someone sends a POST request to the /sessions/logon path,
  * Passport will call the function we defined earlier and registered to the name "local".
- *  If that function completes successfully (done(...) is called with no error argument), then it 
- * will redirect the page to the successRedirect page. If there is an error, then it will redirect to the failureRedirect page, 
+ *  If that function completes successfully (done(...) is called with no error argument), then it
+ * will redirect the page to the successRedirect page. If there is an error, then it will redirect to the failureRedirect page,
  * and also set a flash message with the message property from the object we passed to done(...). */
 
 router.route("/register").get(registerShow).post(registerDo);

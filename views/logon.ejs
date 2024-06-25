@@ -1,29 +1,49 @@
-<%# EJS COMMENT The logon.ejs view collects the email and password from the user %>
+<%# EJS COMMENT The logon.ejs view collects the email and password from the user
+%> <%- include("partials/head.ejs") %> <%- include("partials/header.ejs") %>
 
+<div class="d-flex align-items-center py-4 bg-body-tertiary">
+  <main class="form-signin w-100 m-auto">
+    <form method="POST">
+      <h2 class="mb-3 fw-normal">
+        <a
+          href="/"
+          class="d-inline-flex link-body-emphasis text-decoration-none"
+          >Clothing Store</a
+        >
+      </h2>
+      <h3 class="h5 mb-3 fw-normal">Please sign in</h3>
 
-<%- include("partials/head.ejs") %>
-<%- include("partials/header.ejs") %>
+      <div class="form-floating">
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="name@example.com"
+          name="email"
+        />
+        <label for="email">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+          name="password"
+        />
+        <label for="password">Password</label>
+      </div>
+      <input type="hidden" name="_csrf" value="<%= _csrf %>" />
 
-<div class="container">
-  <form method="POST">
-    <div>
-      <label name="email">Enter your email:</label>
-      <input name="email" />
-    </div>
-    <div>
-      <label name="password">Enter your password:</label>
-      <input type="password" name="password" />
-    </div>
-    <input type="hidden" name="_csrf" value="<%= _csrf %>">
-    <div>
-      <button>Logon</button>
-      <a href="/">
-        <button type="button">Cancel</button>
-      </a>
-    </div>
-  </form>
-
+      <button
+        class="btn btn-primary w-100 py-2"
+        type="submit"
+        fdprocessedid="y9n4s"
+      >
+        Login
+      </button>
+    </form>
+  </main>
 </div>
-
 
 <%- include("partials/footer.ejs") %>

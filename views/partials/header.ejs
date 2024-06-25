@@ -1,35 +1,54 @@
-<h1>Fara Clothing Store</h1>
-
 <% if (user) { %>
-  <p> Hi <%= user.name %></p>
-
   
-  <a href="/products">Click this link to view your products.</a>
-  <a href="/market">Click this link to view products published in the market</a>
 
-  <br>
-  <br>
+  <div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <div class="col-md-3 mb-2 mb-md-0">
+          <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+            <h2>Clothing Store</h2>
+          </a>
+        </div>
+  
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/" class="nav-link px-2 link-body-emphasis">Home</a></li>
+          <li><a href="/products" class="nav-link px-2 link-body-emphasis">Products</a></li>
+          <li><a href="/market" class="nav-link px-2 link-body-emphasis">Market</a></li>
+        </ul>
+  
+        <div class="col-md-3 text-end">Welcome <%= user.name %></div>
 
+        <form method="POST" action="/sessions/logoff">
+          <input type="hidden" name="_csrf" value="<%= _csrf %>">
 
-  <form method="POST" action="/sessions/logoff">
-  <input type="hidden" name="_csrf" value="<%= _csrf %>">
-  <button>Logoff</button>
-  </form>
+          <div class="col-md-3 text-end">
+            <button class="btn btn-outline-primary me-2">Logoff</button>
+          </div>
+        </form>
+      </header>
+    </div>
+
 <% } %>
+
 
 <% if (errors) {
    errors.forEach((err) => { %>
-     <div>
+    <div class="container">
+     <div  class="alert alert-danger" role="alert">
        Error: <%= err %>
      </div>
+    </div>
    <% })
  } %>
  
  <% if (info) {
    info.forEach((msg) => { %>
-     <div>
+    <div class="container">
+     <div class="alert alert-info" role="alert">
        Info: <%= msg %>
      </div>
+    </div>
    <% })
  } %>
-<hr />
+
+
+<!-- <hr /> -->
