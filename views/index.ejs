@@ -5,6 +5,8 @@
 <%- include("partials/head.ejs") %>
 <%- include("partials/header.ejs") %>
 <% if (user) { %>
+
+
    
    
 <% } else { %>
@@ -17,7 +19,7 @@
         </div>
   
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 link-secondary">Welcome</a></li>
+          <li><a href="#" class="nav-link px-2 link-secondary"></a></li>
           
         </ul>
   
@@ -30,6 +32,26 @@
       </header>
     </div>
 
+
+
+
     
 <% } %>
+
+    
+<div class="container d-flex align-items-center py-4 bg-body-tertiary">
+  <div class="jumbotron">
+    <h1 class="display-4">Welcome to my app!</h1>
+    <br>
+    <p class="lead">Discover a new way to shop with our clothing exchange program.</p>
+    <p class="lead">At Clothing Store, you can trade your new or gently used clothes for fresh, stylish pieces that suit your wardrobe.</p>
+    <p class="lead">Whether you’re looking to update your look or make room in your closet, our exchange system is easy and eco-friendly. </p> 
+    <p class="lead">Join us in reducing waste and promoting fashion that doesn’t cost the earth.</p>
+    <p class="lead">Trade, shop, and save – welcome to a smarter way of dressing!</p>
+    <hr class="my-4">
+    
+  </div>
+  </div>
+
+
 <%- include("partials/footer.ejs") %>
