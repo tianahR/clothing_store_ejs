@@ -1,43 +1,45 @@
 body {
-    background-color: #a1ade0;
-    font-family: var(--main-font);
-    color: var(--main-font-color);
-    min-width: 320px;
-  }
+  background-color: #a1ade0;
+  font-family: var(--main-font);
+  color: var(--main-font-color);
+  min-width: 320px;
+}
 
 button {
-    background-color: var(--secondary-color);
-    font-family: var(--main-font);
-    border: 1px solid red;
-   
-    padding: 15px;
+  background-color: var(--secondary-color);
+  font-family: var(--main-font);
+  border: 1px solid red;
+
+  padding: 15px;
 }
 
 table {
-    width:100%;
-    border-collapse: collapse;
-
+  width: 100%;
+  border-collapse: collapse;
 }
 
-table, th, td{
-    border:1px solid black;
+table,
+th,
+td {
+  border: 1px solid black;
 }
 
-th, td{
-    padding:10px;
-    text-align:left;
+th,
+td {
+  padding: 10px;
+  text-align: left;
 }
 
-th{
-    background-color: #b41c1c;
+th {
+  background-color: #b41c1c;
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
 
-tr:hover{
-    background-color: #e0e0e0;
+tr:hover {
+  background-color: #e0e0e0;
 }
 
 /* .container {
@@ -52,18 +54,17 @@ tr:hover{
     flex-direction:column
 } */
 
-label{
-    margin-bottom: 5px;
-    font-weight:bold
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 input[type="text"],
 input[type="email"],
-input[type="password"]{
-    padding:10px;
-    margin-bottom:20px;
-    border:1px solid #ccc;
-    border-radius:4px;
-    width:100%
-} 
- 
+input[type="password"] {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}

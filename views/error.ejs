@@ -1,5 +1,10 @@
-<%- include("partials/head.ejs") %>
-<%- include("partials/header.ejs") %>
-<h2><%= customError.message %></h2>
-<h3>More details: <%= JSON.stringify(customError) %></h3>
+<%- include("partials/head.ejs") %> <%- include("partials/header.ejs") %>
+
+<div class="container">
+  <div class="alert alert-danger">
+    <h2><%= customError.message %></h2>
+    <h3>More details: <%= JSON.stringify(customError) %></h3>
+  </div>
+</div>
+
 <%- include("partials/footer.ejs") %>

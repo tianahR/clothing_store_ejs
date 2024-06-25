@@ -13,13 +13,6 @@ const ProductSchema = new mongoose.Schema(
       required: [true, "Please enter product price"],
       maxlength: [5, "Product price cannot exceed 5 characters"],
       default: 0.0,
-      // validate: {
-      //   validator: function(v) {
-      //     return !isNaN(v);
-      //   },
-      //   message: props => `${props.value} is not a  number!`
-      // },
-     
     },
     description: {
       type: String,
@@ -54,11 +47,11 @@ const ProductSchema = new mongoose.Schema(
         "Jacket",
         "Coat",
         "Blazer",
-        "Raincoat",       
+        "Raincoat",
         "Panties",
         "Briefs",
         "Bras",
-        "Others"
+        "Others",
       ],
       default: "Others",
     },
@@ -66,7 +59,7 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       enum: [
         "2T",
-        "3T",       
+        "3T",
         "4T",
         "YS",
         "YM",
@@ -81,17 +74,13 @@ const ProductSchema = new mongoose.Schema(
         "2X",
         "3X",
         "1XL",
-        "2XL"
-        
+        "2XL",
       ],
       default: "M",
     },
     gender: {
       type: String,
-      enum: [
-        "Male",
-        "Female",       
-      ],
+      enum: ["Male", "Female"],
       default: "Female",
     },
 
@@ -99,15 +88,23 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       //required: [true, "Please enter product image"],
     },
-    createdAt:{
-      type:Date, default:Date.now
+    createdAt: {
+      type: Date,
+      default: Date.now,
     },
-    published:{
-      type:Boolean
+    published: {
+      type: Boolean,
     },
-    createdByName:{
-      type:String
-    }
+    createdByName: {
+      type: String,
+    },
+    buyers: {
+      type: String,
+    },
+    sold: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

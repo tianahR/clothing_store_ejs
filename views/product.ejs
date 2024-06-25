@@ -2,19 +2,30 @@
 <%- include("partials/header.ejs") %>
 
 <div class="container">
-  <h2><%= product ? "Edit" : "Add" %> Product</h2>
-<form method="POST" action="<%= product ? '/products/update/' + product._id : '/products' %>">
-  <div>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" value="<%= product ? product.name : '' %>" required />
+  
+<h2><%= product ? "Manage" : "Add" %> Product</h2>
+
+
+<form method="POST" action="<%= product ? '/products/update/' + product._id : '/products' %>" class="row g-3">
+  
+  
+  <div class="col-12">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="<%= product ? product.name : '' %>" required />
   </div>
-  <div>
-    <label for="description">Description:</label>
-    <input type="text" id="description" name="description" value="<%= product ? product.description : '' %>" required />
+
+  <div class="col-12">
+    <label for="description" class="form-label">Description</label>
+    <input type="text" class="form-control" id="description" name="description" placeholder="Description" value="<%= product ? product.description : '' %>" required /> 
   </div>
-  <div>
-    <label for="type">Type:</label>
-    <select id="type" name="type">
+
+  
+
+  
+  
+  <div class="col-md-3">
+    <label for="type" class="form-label">Type</label>
+    <select id="type" name="type" class="form-select">
       <option value="T-shirt" <%= product && product.type === "T-shirt" ? "selected" : '' %> >T-shirt</option>
       <option value="Shirt" <%= product && product.type === "Shirt" ? "selected" : '' %> >Shirt</option>
       <option value="Sweater" <%= product && product.type === "Sweater" ? "selected" : '' %> >Sweater</option>
@@ -38,9 +49,9 @@
     </select>
   </div>
 
-  <div>
-    <label for="size">Size:</label>
-    <select id="size" name="size">
+  <div class="col-md-3">
+    <label for="size" class="form-label">Size</label>
+    <select id="size" name="size" class="form-select">
       <option value="2T" <%= product && product.size === "2T" ? "selected" : '' %> >2T</option>
       <option value="3T" <%= product && product.size === "3T" ? "selected" : '' %> >3T</option>       
       <option value="4T" <%= product && product.size === "4T" ? "selected" : '' %> >4T</option>
@@ -61,39 +72,63 @@
     </select>
 </div>
 
-
-<div>
-    <label for="gender">Gender:</label>
-    <select id="gender" name="gender">
-      <option value="Male" <%= product && product.gender === "Male" ? "selected" : '' %> >Male</option>
-      <option value="Female" <%= product && product.gender === "Female" ? "selected" : '' %> >Female</option>       
-    </select>
+<div class="col-md-3">
+  <label for="gender" class="form-label">Gender</label>
+  <select id="gender" name="gender" class="form-select">
+    <option value="Male" <%= product && product.gender === "Male" ? "selected" : '' %> >Male</option>
+    <option value="Female" <%= product && product.gender === "Female" ? "selected" : '' %> >Female</option>       
+  </select>
 </div>
-    
+
+<div class="col-md-3">
+  <label for="price" class="form-label">Price</label>
+  <input type="number" id="price" name="price" class="form-control" placeholder="Price" value="<%= product ? product.price : '' %>" step="0.01" required/>
+</div>
 
   
-   <div>
-    <label for="price">Price:</label>
-    <input type="number" id="price" name="price" value="<%= product ? product.price : '' %>" step="0.01" required/>
+
+<div class="col-md-6">
+  <div class="form-check">
+  <input type="checkbox" name="published" class="form-check-input" value="true" <%= product && product.published ? "checked" : '' %>>
+  <label class="form-check-label" for="published">Published</label>
+  </div>
+</div>
+
+
+<div class="col-md-6">
+  <div class="form-check">
+  <input type="checkbox" name="sold" class="form-check-input" value="true" <%= product && product.sold ? "checked" : '' %>>
+  <label class="form-check-label" for="sold">Sold</label>
+  </div>
+</div>
+
+
+
+
+  <div class="col-12">
+    <label for="buyers" class="form-label">Buyers</label>
+    <!-- <input type="textarea" row="5" class="form-control" id="buyers" name="buyers" value="<%= product ? product.buyers : '' %>"/>  -->
+    <textarea class="form-control" id="buyers" name="buyers" rows="3" ><%= product ? product.buyers : '' %></textarea>
   </div>
 
-  <div>
-    <input type="checkbox" name="published" value="true" <%= product && product.published ? "checked" : '' %>>
-    <label for="published"> Published </label>
+
+
+  
+
+  <div class="col-md-6">
+    <button type="submit" id="adding-product" class="btn btn-outline-primary me-2"><%= product ? "Update" : "Add" %></button>
+
+    <a href="/products">
+      <button type="button" class="btn btn-outline-primary me-2" id="reset">Cancel</button>
+    
+    </a>
   </div>
-
-
-  <button type="submit" id="adding-product"><%= product ? "Update" : "Add" %></button>
   <input type="hidden" name="_csrf" value="<%= _csrf %>" /> 
 
-  <a href="/products">
-    <button type="button">Cancel</button>
-  </a>
+  
 </form>
 
 </div>
-
-
 
 
 <%- include("partials/footer.ejs") %>

@@ -1,6 +1,20 @@
 <%- include("partials/head.ejs") %> 
 <%- include("partials/header.ejs") %>
-<h1>Products List</h1>
+
+
+<div class="container">
+
+
+<h3>Products List</h3>
+
+<br>
+
+<a href="/products/new">
+  <button type="button" class="btn btn-outline-primary me-2">Add a new product</button>
+</a>
+
+<br>
+<br>
 
 <!-- sorting -->
 
@@ -19,26 +33,13 @@
     <option value="desc" <%= sortOrder === 'desc' ? 'selected' : "" %>>Descending</option>
    
   </select>
-  <button type="submit">Sort</button>
+  <button type="submit" class="btn btn-outline-primary me-2">Sort</button>
 </form>
 
-<!-- pagination -->
-<div>
-  <% if (currentPage > 1) { %>
-        <a href="/products?page=<%= currentPage - 1 %>&sortField=<%= sortField %>&sortOrder=<%= sortOrder %>">Previous</a>
-  <% }%>
 
-  <% for (let pageCount=1 ; pageCount<=totalPages ; pageCount++){ %>
-        <a href="/products?page=<%= pageCount %>&sortField=<%= sortField %>&sortOrder=<%= sortOrder %>"><%=pageCount %></a>
-  <% }%>
 
-  <% if(currentPage < totalPages) { %>
-        <a href="/products?page=<%= currentPage +1 %>&sortField=<%= sortField %>&sortOrder=<%= sortOrder %>">Next</a>
-  <% }%>
-
-</div>
-
-  <table id="product-table">
+  <table id="product-table" class="table table-striped">
+    <thead>
     <tr id="product-table-header">
       <th>Name</th>         
       <th>Description</th>
@@ -46,10 +47,14 @@
       <th>Price</th>
       <th>Size</th>
       <th>Published</th>
+      <th>Status</th>
       <th colspan="2"></th>
     </tr>
+  </thead>
+  <tbody>
   <% if (products && products.length) { %>
     <% products.forEach((product) => { %>
+      
       <tr>
         <td><%= product.name %></td>
         <td><%= product.description %></td>
@@ -57,23 +62,53 @@
         <td>$<%= product.price %></td>
         <td><%= product.size %></td>
         <td><%= product.published?"Published":"" %></td>
+        <td><%= product.sold?"Sold":"" %></td>
         <td><a href="/products/edit/<%= product._id %>">
-          <button type="button">Edit</button>
+          <button type="button" class="btn btn-light rounded-circle"><i class="bi-pencil"></i></button>
         </a></td>
         <td>
           <form method="POST" action="/products/delete/<%= product._id %>" style="display: inline">
           <input type="hidden" name="_csrf" value="<%= _csrf %>" />
-          <button type="submit">Delete</button>
+          <button type="submit" class="btn btn-light rounded-circle">
+            <i class="bi-trash"></i>
+          </button>
           </form>
       </td>
       </tr>
     <% }) %>
   <% } %>
+  </tbody>
 </table>
 <br>
-<a href="/products/new">
-  <button type="button">Add a new product</button>
-</a>
 
+
+
+
+<!-- pagination -->
+<nav aria-label="Page navigation example">
+      <ul class="pagination">
+      <% if (currentPage > 1) { %>
+        <li class="page-item">
+          <a  class="page-link" href="/products?page=<%= currentPage - 1 %>&sortField=<%= sortField %>&sortOrder=<%= sortOrder %>">Previous</a>
+        </li>
+      <% }%>
+
+      <% for (let pageCount=1 ; pageCount<=totalPages ; pageCount++){ %>
+        <li class="page-item  <%= currentPage === pageCount ? 'active' : '' %>">
+            <a  class="page-link" href="/products?page=<%= pageCount %>&sortField=<%= sortField %>&sortOrder=<%= sortOrder %>"><%=pageCount %></a>
+          </li>
+      <% }%>
+
+      <% if(currentPage < totalPages) { %>
+        <li class="page-item">
+            <a  class="page-link" href="/products?page=<%= currentPage +1 %>&sortField=<%= sortField %>&sortOrder=<%= sortOrder %>">Next</a>
+          </li>
+      <% }%>
+      </ul>
+
+</nav>
+
+
+</div>
 
 <%- include("partials/footer.ejs") %>

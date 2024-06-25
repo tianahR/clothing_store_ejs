@@ -1,6 +1,5 @@
 /*   To use Passport, tell it how to authenticate users, retrieving them from the database.*/
 
-
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("../models/User");
@@ -14,14 +13,18 @@ const passportInit = () => {
         try {
           const user = await User.findOne({ email: email });
           if (!user) {
-            return done(null, false, { message: "Email provided doesn't match the one on file." });
+            return done(null, false, {
+              message: "Email provided doesn't match the one on file.",
+            });
           }
 
           const result = await user.comparePassword(password);
           if (result) {
             return done(null, user);
           } else {
-            return done(null, false, { message: "Password provided doesn't match the one on file." });
+            return done(null, false, {
+              message: "Password provided doesn't match the one on file.",
+            });
           }
         } catch (e) {
           return done(e);

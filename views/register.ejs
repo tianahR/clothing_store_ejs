@@ -1,35 +1,40 @@
 <%- include("partials/head.ejs") %>
 <%- include("partials/header.ejs") %>
 
-<div class="container">
-  <form method="POST">  
-    <div>
-      <label name="name">Enter your name:</label>
-      <input name="name" />
-    </div>
-    <div>
-      <label name="email">Enter your email:</label>
-      <input name="email" />
-    </div>
-    <div>
-      <label name="password">Enter your password:</label>
-      <input type="password" name="password" />
-    </div>
-  
-    <div>
-      <label name="password1">Confirm your password:</label>
-      <input type="password" name="password1" />
-    </div>
-  
-    <input type="hidden" name="_csrf" value="<%= _csrf %>">
+<div class="d-flex align-items-center py-4 bg-body-tertiary">
+  <main class="form-signin-cs w-100 m-auto">
+      <form method="POST">  
+
+        <h2 class="mb-3 fw-normal"><a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">Clothing Store</a></h2>
+
+        <h3 class="mb-3 fw-normal">Register</h3>
+
+        <div class="form-floating">
+          <input type="name" class="form-control form-input-top" id="name" placeholder="Enter name" name="name" />
+          <label for="name">Name</label>
+        </div>
+
+        <div class="form-floating">
+          <input type="email" class="form-control form-input-middle" id="email" placeholder="name@example.com" name="email">
+          <label for="email">Email address </label>
+        </div>
+
+        <div class="form-floating">
+          <input type="password" class="form-control form-input-middle" id="password" placeholder="Password" name="password">
+          <label for="password">Password</label>
+        </div>
+      
+        <div class="form-floating">
+          <input type="password" class="form-control form-input-bottom" id="password1" placeholder=" Confirm Password" name="password1">
+          <label for="password1"> Confirm you Password</label>
+        </div>
+      
+        <input type="hidden" name="_csrf" value="<%= _csrf %>">
+               
+        <button class="btn btn-primary w-100 py-2" type="submit" fdprocessedid="y9n4s">Register </button>
+     
     
-    <div>
-      <button>Register</button>
-      <a href="/">
-        <button type="button">Cancel</button>
-      </a>
-    </div>  
-  </form>
+      </form>
 
 </div>
 
